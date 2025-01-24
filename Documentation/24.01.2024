@@ -1,0 +1,7 @@
+First time in a while I've gone back to this project and made some major changes...
+
+I decided to learn how to set up multiple python files instead of using one large main.py file.
+With this I now have 7 files with one file per class and I plan on limiting the amount of code I add to main.py.
+
+Future goals are still to finish settings screen and experiment with other features such as animations and potentially music.
+Had a blast today and made good progress!!!
