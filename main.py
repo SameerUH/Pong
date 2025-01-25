@@ -16,11 +16,9 @@ import sys
 
 
 #File organization:
-from objects import player
-from objects import enemy
-from objects import ball
+from objects import player, enemy, ball, display
 from objects import PONG_TITLE, PLAY_GAME, SETTINGS
-from objects import display
+from screens import start_screen, game_screen
 
 #Game States:
 Start_state = False
@@ -57,27 +55,8 @@ while True:
     
     if Start_state == True:
         #START SCREEN
-        display.SCREEN.fill(display.BLACK)
-        PONG_TITLE.functions()
-        PLAY_GAME.functions()
-        SETTINGS.functions()
-        pygame.display.update()
+        start_screen()
 
     elif Game_state == True:
         #GAME DISPLAY
-        display.SCREEN.fill(display.GRAY)
-        SCREEN_OUTLINE = pygame.draw.rect(display.SCREEN, display.BLUE, (0, 0, display.SCREENWIDTH, display.GAMEHEIGHT), 2)
-
-        #Score display code:
-        player_score = font.render(f'Player Score: {player.score}', True, display.BLACK)
-        enemy_score = font.render(f"Enemy Score: {enemy.score}", True, display.BLACK) 
-        display.SCREEN.blit(player_score, player_score_rect)
-        display.SCREEN.blit(enemy_score, enemy_score_rect)
-        
-
-        #Object/Screen updates:
-        player.functions(user_input)
-        enemy.functions(user_input)
-        ball.functions()
-
-        pygame.display.update()
+        game_screen()
