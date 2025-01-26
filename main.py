@@ -16,47 +16,47 @@ import sys
 
 
 #File organization:
-from objects import player, enemy, ball, display
-from objects import PONG_TITLE, PLAY_GAME, SETTINGS
-from screens import start_screen, game_screen
+from screens import *
+from objects import display, PAUSE, ball
 
-#Game States:
-Start_state = False
-Game_state = True
 
 os.environ["SDL_VIDEO_CENTERED"] = "1"
 
-pygame.display.set_caption("PONG")
+clock = pygame.time.Clock()
+
 pygame.init()
 
-#Score Text:
-font = pygame.font.Font('freesansbold.ttf', 32)
-player_score = font.render(f'Player Score: {player.score}', True, display.BLACK)
-player_score_rect = player_score.get_rect()
-player_score_rect.center = (150, 650)
-
-enemy_score = font.render(f"Enemy Score: {enemy.score}", True, display.BLACK)
-enemy_score_rect = enemy_score.get_rect()
-enemy_score_rect.center = (1000, 650)
-
+#Main loop
 while True:
     user_input = pygame.key.get_pressed()
+    mouse_pos = pygame.mouse.get_pos()
     FULLSCREEN = False
     for events in pygame.event.get():
         if events.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
         if events.type == pygame.MOUSEBUTTONDOWN:
-            mouseclicked = True
+            mouse_clicked = True
+            print(mouse_clicked)      
+        else:
+            mouse_clicked = False
+
         if (user_input[pygame.K_F11]):
             pygame.display.toggle_fullscreen()
-        else:
-            mouseclicked = False
     
-    if Start_state == True:
+    clock.tick()
+    pygame.display.set_caption("FPS: " + str(int(clock.get_fps())))
+    if display.state == "start_screen":
         #START SCREEN
-        start_screen()
-
-    elif Game_state == True:
+        start_screen(mouse_pos, mouse_clicked, user_input)
+    elif display.state == "game_screen":
         #GAME DISPLAY
-        game_screen()
+        game_screen(user_input, mouse_pos, mouse_clicked)
+    elif display.state == "settings_screen":
+        settings_screen()
+    elif display.state == "pause_screen":
+        pause_screen(mouse_pos, mouse_clicked, user_input)
+    
+
+    pygame.display.update()
+    

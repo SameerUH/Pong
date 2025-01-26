@@ -13,8 +13,10 @@ class Ball(pygame.sprite.Sprite):
         self.radius = 15
         self.shape = pygame.draw.circle(display.SCREEN, self.color, (self.x, self.y), self.radius)
         #self.hitbox = pygame.draw.rect(SCREEN, WHITE, (self.x, self.y, self.radius, self.radius), 1)
-        self.x_velocity = 0.5
+        self.x_velocity = 1
         self.y_velocity = 0
+        self.temp_x_velocity = self.x_velocity
+        self.temp_y_velocity = self.y_velocity
     
     def draw_updatescreen(self):
         self.shape = pygame.draw.circle(display.SCREEN, self.color, (self.x, self.y), self.radius)
@@ -25,29 +27,23 @@ class Ball(pygame.sprite.Sprite):
         self.y = y
         self.x_velocity = x_velocity
         self.y_velocity = y_velocity
-    
+        self.temp_x_velocity = self.x_velocity
+        self.temp_y_velocity = self.y_velocity
+
     def movement(self):
         self.x -= self.x_velocity
         self.y -= self.y_velocity
     
     def collision(self, player, enemy):
         #Ball colliding with player:
-        if self.shape.colliderect(player.upperhitbox,):
-            self.x_velocity = rand.uniform(-0.5, -0.4)
-            self.y_velocity = rand.uniform(0.3, 0.5)
-
-        elif ball.shape.colliderect(player.lowerhitbox):
-            self.x_velocity = rand.uniform(-0.5, -0.4)
-            self.y_velocity = rand.uniform(-0.3, -0.5)
+        if self.shape.colliderect(player.upperhitbox) or self.shape.colliderect(player.lowerhitbox):
+            self.x_velocity = rand.uniform(-1.5, -1)
+            self.y_velocity = rand.choice([rand.uniform(1, 0.7), rand.uniform(-1, -0.7)])
 
         #Ball colliding with enemy:
-        if self.shape.colliderect(enemy.upperhitbox):
-            self.x_velocity = rand.uniform(0.4, 0.5)
-            self.y_velocity = rand.uniform(0.3, 0.5)
-
-        elif ball.shape.colliderect(enemy.lowerhitbox):
-            self.x_velocity = rand.uniform(0.4, 0.5)
-            self.y_velocity = rand.uniform(-0.3, -0.5)
+        if self.shape.colliderect(enemy.upperhitbox) or self.shape.colliderect(enemy.lowerhitbox):
+            self.x_velocity = rand.uniform(1.5, 1)
+            self.y_velocity = rand.choice([rand.uniform(1, 0.7), rand.uniform(-1, -0.7)])
         
         #Ball colliding with top and bottom wall:
         if ball.y < 0:
@@ -58,14 +54,14 @@ class Ball(pygame.sprite.Sprite):
     def player_score(self, player):
         if ball.x > display.SCREENWIDTH:
             ball.x, ball.y = display.SCREENWIDTH / 2, display.SCREENHEIGHT / 2
-            ball.x_velocity = rand.choice([-0.5, 0.5])
+            ball.x_velocity = rand.choice([1, 1])
             ball.y_velocity = 0
             player.score += 1
     
     def enemy_score(self, enemy):
         if ball.x < 0:
             ball.x, ball.y = display.SCREENWIDTH / 2, display.SCREENHEIGHT / 2
-            ball.x_velocity = rand.choice([-0.5, 0.5])
+            ball.x_velocity = rand.choice([1, 1])
             ball.y_velocity = 0
             enemy.score += 1
     

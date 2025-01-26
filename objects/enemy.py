@@ -1,6 +1,6 @@
 import pygame
 from .display import display
-pygame.init()
+#pygame.init()
 
 #Enemy class:
 class Enemy(pygame.sprite.Sprite):
@@ -25,16 +25,22 @@ class Enemy(pygame.sprite.Sprite):
         self.y = y
         self.score = score
 
-    def movement(self, user_input):        
-        if (user_input[pygame.K_UP]):
-            self.y -= 0.5
-        elif (user_input[pygame.K_DOWN]):
-            self.y += 0.5
-        
-        if (self.y + 60) >= display.GAMEHEIGHT:
-            self.y -= 0.5
-        elif self.y <= 0:
-            self.y += 0.5
+    def movement(self, user_input):
+        if display.state == "game_screen":
+            if (user_input[pygame.K_UP]):
+                self.y -= 1
+            elif (user_input[pygame.K_DOWN]):
+                self.y += 1
+            
+            if (self.y + 60) >= display.GAMEHEIGHT:
+                self.y -= 1
+            elif self.y <= 0:
+                self.y += 1
+        elif display.state == "pause_screen":
+            if (user_input[pygame.K_UP]):
+                self.y -= 0
+            elif (user_input[pygame.K_DOWN]):
+                self.y += 0
 
 
     def functions(self, user_input):

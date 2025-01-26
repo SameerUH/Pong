@@ -25,15 +25,22 @@ class Player(pygame.sprite.Sprite):
         self.score = score
 
     def movement(self, user_input):
-        if (user_input[pygame.K_w]):
-            self.y -= 0.5
-        elif (user_input[pygame.K_s]):
-            self.y += 0.5
+        if display.state == "game_screen":
+            if (user_input[pygame.K_w]):
+                self.y -= 1
+            elif (user_input[pygame.K_s]):
+                self.y += 1
 
-        if (self.y + 60) >= display.GAMEHEIGHT:
-            self.y -= 0.5
-        elif self.y <= 0:
-            self.y += 0.5
+            if (self.y + 60) >= display.GAMEHEIGHT:
+                self.y -= 1
+            elif self.y <= 0:
+                self.y += 1
+            
+        if display.state == "pause_screen":
+            if (user_input[pygame.K_w]):
+                self.y -= 0
+            elif (user_input[pygame.K_s]):
+                self.y += 0
     
     
     def functions(self, user_input):

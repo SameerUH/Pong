@@ -1,0 +1,7 @@
+Fixed an issue with the game screen not uploading as I forgot to add "pygame.display.update()" to it's function.
+
+Started on a settings and pause screen which went okay. Managed to make a pause screen and get it to work, still need to work on the design of it though.
+
+Figured out that pygame sometimes take 2 inputs instead of one so decided to instantly move a button whenever I click on it to avoid double inputs.
+
+Other than that it went well today and will probably finish the design of the pause screen and start doing settings stuff next commit.
