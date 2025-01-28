@@ -3,9 +3,9 @@ from .display import display
 
 #Player class:
 class Player(pygame.sprite.Sprite):
-    def __init__(self, color, x, y):
+    def __init__(self, color, y):
         self.color = color
-        self.x = x
+        self.x = 100
         self.y = y
         self.width = 20
         self.height = 60
@@ -19,8 +19,8 @@ class Player(pygame.sprite.Sprite):
         self.upperhitbox = pygame.draw.rect(display.SCREEN, self.color, (self.x, self.y, self.width, self.height / 2), 1)
         self.lowerhitbox = pygame.draw.rect(display.SCREEN, self.color, (self.x, self.y+30, self.width, self.height / 2), 1)
         #self.hitbox = pygame.draw.rect(SCREEN, BLUE, (self.x, self.y, self.width, self.height), 1)
-    def update(self, x, y, score):
-        self.x = x
+    def update(self, y, score):
+        self.x = 100
         self.y = y
         self.score = score
 
@@ -45,11 +45,11 @@ class Player(pygame.sprite.Sprite):
     
     def functions(self, user_input):
         self.draw_updatescreen()
-        self.update(self.x, self.y, self.score)
+        self.update(self.y, self.score)
         self.movement(user_input)
 
 
-player = Player(display.BLACK, 100, display.SCREENHEIGHT / 2)
+player = Player(display.BLACK, display.SCREENHEIGHT / 2)
         
 
 

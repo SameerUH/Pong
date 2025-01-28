@@ -15,7 +15,7 @@ enemy_score_rect = enemy_score.get_rect()
 enemy_score_rect.center = (1000, 650)
 
 #GAME DISPLAY
-def game_screen(user_input, mouse_pos, mouse_clicked):
+def game_screen(mouse_pos, mouse_clicked, user_input):
     display.SCREEN.fill(display.GRAY)
     SCREEN_OUTLINE = pygame.draw.rect(display.SCREEN, display.BLUE, (0, 0, display.SCREENWIDTH, display.GAMEHEIGHT), 2)
     #Score display code:
@@ -29,5 +29,5 @@ def game_screen(user_input, mouse_pos, mouse_clicked):
     player.functions(user_input)
     enemy.functions(user_input)
     ball.functions()
-    PAUSE.functions(mouse_pos, mouse_clicked, user_input)
+    PAUSE.functions(mouse_pos, mouse_clicked)
     #pygame.display.update()

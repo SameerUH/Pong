@@ -1,7 +1,7 @@
 """
 To-Do:
 1. Score. ####
-2. Start screen.
+2. Start screen ###.
     - Black screen with buttons.
 3. Settings screen.
 4. Computer A.I.
@@ -17,8 +17,7 @@ import sys
 
 #File organization:
 from screens import *
-from objects import display, PAUSE, ball
-
+from objects import display, PAUSE, ball, player, enemy
 
 os.environ["SDL_VIDEO_CENTERED"] = "1"
 
@@ -36,8 +35,7 @@ while True:
             pygame.quit()
             sys.exit()
         if events.type == pygame.MOUSEBUTTONDOWN:
-            mouse_clicked = True
-            print(mouse_clicked)      
+            mouse_clicked = True 
         else:
             mouse_clicked = False
 
@@ -48,12 +46,18 @@ while True:
     pygame.display.set_caption("FPS: " + str(int(clock.get_fps())))
     if display.state == "start_screen":
         #START SCREEN
-        start_screen(mouse_pos, mouse_clicked, user_input)
+        ball.x, ball.y, ball.x_velocity, ball.y_velocity = (display.SCREENWIDTH / 2), (display.SCREENHEIGHT / 2), 1, 0
+        player.y, player.score = (display.SCREENHEIGHT / 2), 0
+        enemy.y, enemy.score = (display.SCREENHEIGHT / 2), 0
+        ball.functions()
+        player.functions(user_input)
+        enemy.functions(user_input)
+        start_screen(mouse_pos, mouse_clicked)
     elif display.state == "game_screen":
         #GAME DISPLAY
-        game_screen(user_input, mouse_pos, mouse_clicked)
+        game_screen(mouse_pos, mouse_clicked, user_input)
     elif display.state == "settings_screen":
-        settings_screen()
+        settings_screen(mouse_pos, mouse_clicked)
     elif display.state == "pause_screen":
         pause_screen(mouse_pos, mouse_clicked, user_input)
     

@@ -4,9 +4,9 @@ from .display import display
 
 #Enemy class:
 class Enemy(pygame.sprite.Sprite):
-    def __init__(self, color, x, y):
+    def __init__(self, color, y):
         self.color = color
-        self.x = x
+        self.x = 1050
         self.y = y
         self.width = 20
         self.height = 60
@@ -20,8 +20,8 @@ class Enemy(pygame.sprite.Sprite):
         self.upperhitbox = pygame.draw.rect(display.SCREEN, self.color, (self.x, self.y, self.width, self.height / 2), 1)
         self.lowerhitbox = pygame.draw.rect(display.SCREEN, self.color, (self.x, self.y+30, self.width, self.height / 2), 1)
     
-    def update(self, x, y, score):
-        self.x = x
+    def update(self, y, score):
+        self.x = 1050
         self.y = y
         self.score = score
 
@@ -45,8 +45,8 @@ class Enemy(pygame.sprite.Sprite):
 
     def functions(self, user_input):
         self.draw_updatescreen()
-        self.update(self.x, self.y, self.score)
+        self.update(self.y, self.score)
         self.movement(user_input)
 
 
-enemy = Enemy(display.BLACK, 1050, display.SCREENHEIGHT / 2)
+enemy = Enemy(display.BLACK, display.SCREENHEIGHT / 2)

@@ -1,0 +1,5 @@
+Finished the pause screen and added buttons for the settings screen, but still need to code them.
+
+Had issues with the positioning of the buttons due to double inputs whenever I would click once.
+
+Next commit I plan to start coding the buttons in settings to change behaviour of the game.
