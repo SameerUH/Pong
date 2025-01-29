@@ -1,12 +1,12 @@
 import pygame, sys
 from .display import display
 from .ball import ball
+from game_settings import game_setting
 pygame.init()
 
 
 class Button(pygame.sprite.Sprite):
     def __init__(self, color, x, y, width, height, text, font_size):
-        #pygame.Surface.convert_alpha(display.SCREEN)
         self.color = color
         self.x = x
         self.y = y
@@ -54,6 +54,26 @@ class Button(pygame.sprite.Sprite):
                     elif display.state == "settings_screen":
                         if self.text == "GO BACK":
                             display.state = "start_screen"
+                        elif self.text == "SPEED: NORMAL":
+                            self.text = "SPEED: FAST"
+                            self.color = display.GREEN
+                            game_setting.x_velocity_min, game_setting.x_velocity_max = 1.5, 2
+                            game_setting.y_velocity_min, game_setting.y_velocity_max = 1.3, 1.6
+                            game_setting.speed = 2
+                        elif self.text == "SPEED: FAST":
+                            self.text = "SPEED: SLOW"
+                            self.color = display.RED
+                            game_setting.x_velocity_min, game_setting.x_velocity_max = 0.5, 1
+                            game_setting.y_velocity_min, game_setting.y_velocity_max = 0.4, 0.7
+                            game_setting.speed = 0.5
+                        elif self.text == "SPEED: SLOW":
+                            self.text = "SPEED: NORMAL"
+                            self.color = display.YELLOW
+                            game_setting.x_velocity_min, game_setting.x_velocity_max = 1, 1.5
+                            game_setting.y_velocity_min, game_setting.y_velocity_max = 0.7, 1
+                            game_setting.speed = 1
+
+
 
     def update(self, x, y): 
         self.x = x

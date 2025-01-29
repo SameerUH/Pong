@@ -1,8 +1,8 @@
 """
 To-Do:
 1. Score. ####
-2. Start screen ###.
-    - Black screen with buttons.
+2. Start screen. ####
+    - Black screen with buttons. ####
 3. Settings screen.
 4. Computer A.I.
 5. Changes to the ball movement.
@@ -13,6 +13,7 @@ To-Do:
 import pygame
 import os
 import sys
+import time
 
 
 #File organization:
@@ -22,6 +23,9 @@ from objects import display, PAUSE, ball, player, enemy
 os.environ["SDL_VIDEO_CENTERED"] = "1"
 
 clock = pygame.time.Clock()
+
+mouse_clicked = False
+
 
 pygame.init()
 
@@ -34,13 +38,15 @@ while True:
         if events.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
+    
         if events.type == pygame.MOUSEBUTTONDOWN:
-            mouse_clicked = True 
+            mouse_clicked = True
         else:
             mouse_clicked = False
 
-        if (user_input[pygame.K_F11]):
-            pygame.display.toggle_fullscreen()
+
+    if (user_input[pygame.K_F11]):
+        pygame.display.toggle_fullscreen()
     
     clock.tick()
     pygame.display.set_caption("FPS: " + str(int(clock.get_fps())))

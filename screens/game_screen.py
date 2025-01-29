@@ -2,8 +2,6 @@ import pygame
 from objects import display, player, enemy, ball, PAUSE
 from .pause_screen import pause_screen
 
-#pygame.init()
-
 
 font = pygame.font.Font('freesansbold.ttf', 32)
 player_score = font.render(f'Player Score: {player.score}', True, display.BLACK)

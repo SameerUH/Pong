@@ -1,5 +1,6 @@
 import pygame
 from .display import display
+from game_settings import game_setting
 
 #Player class:
 class Player(pygame.sprite.Sprite):
@@ -19,6 +20,8 @@ class Player(pygame.sprite.Sprite):
         self.upperhitbox = pygame.draw.rect(display.SCREEN, self.color, (self.x, self.y, self.width, self.height / 2), 1)
         self.lowerhitbox = pygame.draw.rect(display.SCREEN, self.color, (self.x, self.y+30, self.width, self.height / 2), 1)
         #self.hitbox = pygame.draw.rect(SCREEN, BLUE, (self.x, self.y, self.width, self.height), 1)
+
+
     def update(self, y, score):
         self.x = 100
         self.y = y
@@ -27,14 +30,14 @@ class Player(pygame.sprite.Sprite):
     def movement(self, user_input):
         if display.state == "game_screen":
             if (user_input[pygame.K_w]):
-                self.y -= 1
+                self.y -= game_setting.speed
             elif (user_input[pygame.K_s]):
-                self.y += 1
+                self.y += game_setting.speed
 
             if (self.y + 60) >= display.GAMEHEIGHT:
-                self.y -= 1
+                self.y -= game_setting.speed
             elif self.y <= 0:
-                self.y += 1
+                self.y += game_setting.speed
             
         if display.state == "pause_screen":
             if (user_input[pygame.K_w]):
