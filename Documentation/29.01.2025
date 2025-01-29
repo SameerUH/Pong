@@ -1,0 +1,5 @@
+Started adding some settings to the settings screen by having an object which updates everytime a setting is changed, making it easier to apply it to the rest of the code.
+
+Was a small session today as I was busy and didn't really have much time, but still happy with the progress I've made.
+
+Future development could be to fix double click issue by looking at old code that would change how settings work or by trying a new method I find with research.
