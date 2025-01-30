@@ -1,7 +1,7 @@
 import pygame
-from objects import display, player, enemy, ball, PAUSE
+from objects import display, player, enemy, ball, PAUSE, WINNER
 from .pause_screen import pause_screen
-
+from game_settings import game_setting
 
 font = pygame.font.Font('freesansbold.ttf', 32)
 player_score = font.render(f'Player Score: {player.score}', True, display.BLACK)
@@ -23,9 +23,16 @@ def game_screen(mouse_pos, mouse_clicked, user_input):
     display.SCREEN.blit(enemy_score, enemy_score_rect)
 
 
+    if player.score == game_setting.score:
+        display.state = "winner_screen"
+        WINNER.text = "PLAYER WINS!"
+    elif enemy.score == game_setting.score:
+        display.state = "winner_screen"
+        WINNER.text = "ENEMY WINS!"
+
+
     #Object/Screen updates:
     player.functions(user_input)
     enemy.functions(user_input)
     ball.functions()
     PAUSE.functions(mouse_pos, mouse_clicked)
-    #pygame.display.update()

@@ -1,5 +1,5 @@
 import pygame
-from objects import display, SETTINGS, GO_BACK, COLOURBLIND, NORMAL_MODE, SPEED, SCORE
+from objects import display, SETTINGS, GO_BACK, COLOURBLIND, SPEED, SCORE
 
 """
 SETTINGS TO-DO/NOTES:
@@ -19,7 +19,6 @@ def settings_screen(mouse_pos, mouse_clicked):
     SETTINGS.functions(mouse_pos, mouse_clicked)
     GO_BACK.functions(mouse_pos, mouse_clicked)
     COLOURBLIND.functions(mouse_pos, mouse_clicked)
-    NORMAL_MODE.functions(mouse_pos, mouse_clicked)
     SPEED.functions(mouse_pos, mouse_clicked)
     SCORE.functions(mouse_pos, mouse_clicked)
     #pygame.display.update()

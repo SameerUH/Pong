@@ -1,0 +1,5 @@
+Fixed the double mouse input issue, all I had to do was add a delay after the first event happened so I added it at the end of the for loop in the button interaction function.
+
+Also added a winner screen and added a score setting where the user can decide which score they would like to play up to in the game.
+
+Future additions will be a colourblind screen and then making some changes to the ball movement mechanics and possibly adding an enemy A.I. to play against the computer.

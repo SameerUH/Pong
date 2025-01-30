@@ -1,5 +1,4 @@
-import pygame
-
+import pygame, math
 #List of attributes in the setting class will be applied to the game.
 
 class Game_setting(pygame.sprite.Sprite):
@@ -8,9 +7,9 @@ class Game_setting(pygame.sprite.Sprite):
         self.speed = 1
         self.x_velocity_min, self.x_velocity_max = 1, 1.5
         self.y_velocity_min, self.y_velocity_max = 0.7, 1
-        self.score = "any"
+        self.score = math.inf
     
-    def update(self, colour = "normal", speed = 1, score = "score", x_velocity_min = 1, x_velocity_max = 1.5, y_velocity_min = 0.7, y_velocity_max = 1):
+    def update(self, colour = "normal", speed = 1, score = math.inf, x_velocity_min = 1, x_velocity_max = 1.5, y_velocity_min = 0.7, y_velocity_max = 1):
         self.colour = colour
         self.speed = speed
         self.score = score

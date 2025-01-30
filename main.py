@@ -18,7 +18,7 @@ import time
 
 #File organization:
 from screens import *
-from objects import display, PAUSE, ball, player, enemy
+from objects import display, ball, player, enemy, QUIT
 
 os.environ["SDL_VIDEO_CENTERED"] = "1"
 
@@ -39,15 +39,15 @@ while True:
             pygame.quit()
             sys.exit()
     
-        if events.type == pygame.MOUSEBUTTONDOWN:
-            mouse_clicked = True
-        else:
-            mouse_clicked = False
-
+    if events.type == pygame.MOUSEBUTTONDOWN:
+        mouse_clicked = True
+    else:
+        mouse_clicked = False
 
     if (user_input[pygame.K_F11]):
         pygame.display.toggle_fullscreen()
-    
+
+
     clock.tick()
     pygame.display.set_caption("FPS: " + str(int(clock.get_fps())))
     if display.state == "start_screen":
@@ -55,9 +55,11 @@ while True:
         ball.x, ball.y, ball.x_velocity, ball.y_velocity = (display.SCREENWIDTH / 2), (display.SCREENHEIGHT / 2), 1, 0
         player.y, player.score = (display.SCREENHEIGHT / 2), 0
         enemy.y, enemy.score = (display.SCREENHEIGHT / 2), 0
+        QUIT.x, QUIT.y = 600, 400
         ball.functions()
         player.functions(user_input)
         enemy.functions(user_input)
+        QUIT.functions(mouse_pos, mouse_clicked)
         start_screen(mouse_pos, mouse_clicked)
     elif display.state == "game_screen":
         #GAME DISPLAY
@@ -66,7 +68,8 @@ while True:
         settings_screen(mouse_pos, mouse_clicked)
     elif display.state == "pause_screen":
         pause_screen(mouse_pos, mouse_clicked, user_input)
-    
+    elif display.state == "winner_screen":
+        winner_screen(mouse_pos, mouse_clicked)
 
     pygame.display.update()
     
