@@ -14,11 +14,28 @@ enemy_score_rect.center = (1000, 650)
 
 #GAME DISPLAY
 def game_screen(mouse_pos, mouse_clicked, user_input):
-    display.SCREEN.fill(display.GRAY)
-    SCREEN_OUTLINE = pygame.draw.rect(display.SCREEN, display.BLUE, (0, 0, display.SCREENWIDTH, display.GAMEHEIGHT), 2)
+    if display.vision == "normal_mode":
+        display.SCREEN.fill(display.GRAY)
+        SCREEN_OUTLINE = pygame.draw.rect(display.SCREEN, display.BLUE, (0, 0, display.SCREENWIDTH, display.GAMEHEIGHT), 2)
+        PAUSE.colour = display.GREEN
+        ball.colour = display.RED
+        player.colour = display.BLACK
+        enemy.colour = display.BLACK
+        player_score = font.render(f'Player Score: {player.score}', True, display.BLACK)
+        enemy_score = font.render(f"Enemy Score: {enemy.score}", True, display.BLACK) 
+
+
+    elif display.vision == "colourblind_mode":
+        display.SCREEN.fill(display.BLUE)
+        SCREEN_OUTLINE = pygame.draw.rect(display.SCREEN, display.PURPLE, (0, 0, display.SCREENWIDTH, display.GAMEHEIGHT), 2)
+        PAUSE.colour = display.YELLOW
+        ball.colour = display.WHITE
+        player.colour = display.MAROON
+        enemy.colour = display.MAROON
+        player_score = font.render(f'Player Score: {player.score}', True, display.YELLOW)
+        enemy_score = font.render(f"Enemy Score: {enemy.score}", True, display.YELLOW) 
+
     #Score display code:
-    player_score = font.render(f'Player Score: {player.score}', True, display.BLACK)
-    enemy_score = font.render(f"Enemy Score: {enemy.score}", True, display.BLACK) 
     display.SCREEN.blit(player_score, player_score_rect)
     display.SCREEN.blit(enemy_score, enemy_score_rect)
 

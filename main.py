@@ -3,9 +3,9 @@ To-Do:
 1. Score. ####
 2. Start screen. ####
     - Black screen with buttons. ####
-3. Settings screen.
+3. Settings screen. ###
 4. Computer A.I.
-5. Changes to the ball movement.
+5. Changes to the ball movement. ###
 6. Possibly an intro scene.
 7. Do I think I can add animations??
 """
@@ -52,14 +52,6 @@ while True:
     pygame.display.set_caption("FPS: " + str(int(clock.get_fps())))
     if display.state == "start_screen":
         #START SCREEN
-        ball.x, ball.y, ball.x_velocity, ball.y_velocity = (display.SCREENWIDTH / 2), (display.SCREENHEIGHT / 2), 1, 0
-        player.y, player.score = (display.SCREENHEIGHT / 2), 0
-        enemy.y, enemy.score = (display.SCREENHEIGHT / 2), 0
-        QUIT.x, QUIT.y = 600, 400
-        ball.functions()
-        player.functions(user_input)
-        enemy.functions(user_input)
-        QUIT.functions(mouse_pos, mouse_clicked)
         start_screen(mouse_pos, mouse_clicked)
     elif display.state == "game_screen":
         #GAME DISPLAY

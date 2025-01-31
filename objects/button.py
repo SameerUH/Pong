@@ -79,10 +79,12 @@ class Button(pygame.sprite.Sprite):
                         elif self.text == "COLOURBLIND":
                             self.text = "NORMAL"
                             self.colour = display.DARK_GRAY
+                            display.vision = "colourblind_mode"
                             
                         elif self.text == "NORMAL":
                             self.text = "COLOURBLIND"
                             self.colour = display.BLUE
+                            display.vision = "normal_mode"
                         
 
                         if self.text == "SCORE:MAX":

@@ -1,0 +1,11 @@
+Added a colourblind setting and tested different colours to see if they would work well or not. I have a good colour scheme so far but might change it and add some more colours in the future.
+
+Also changed the ball movement in the game by removing the lower hitboxes of both the enemy and the player and changed the upper hitbox to cover the whole body of the players, then I added a 'direction' variable to the players and made them update depending on which key was pressed.
+
+Finally, I made the ball movement dependent on the player movement such that if the player would move down and hit the ball, then the ball would go down as well, vice versa and same with the other player/enemy as well.
+
+Unsure how good this change is, part of me enjoyed the randomness of the old code where it would randomly go up or down regardless of the players movement but I also like the realism of this new change.
+
+Future additions will be adding a A.I. for the enemy and having the user decide whether or not they want to have a 2 player game or vs. against the A.I. and adding possibly adding music/animations.
+
+For now I think the most important idea is to make the code look clean and adding comments for others to understand the concept of the code and make everything more readable instead of it being a lethargic mess.

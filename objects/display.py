@@ -2,7 +2,7 @@ import pygame
 
 
 class Display(pygame.sprite.Sprite):
-    def __init__(self, state):
+    def __init__(self, state, vision):
         self.SCREENWIDTH = 1150
         self.SCREENHEIGHT = 700
         self.SCREENSIZE = [self.SCREENWIDTH, self.SCREENHEIGHT]
@@ -21,7 +21,8 @@ class Display(pygame.sprite.Sprite):
         self.YELLOW = (255, 215, 0)
         self.MAROON = (128, 0, 0)
         self.state = state
+        self.vision = vision
         self.paused = None
 
 
-display = Display("start_screen")
+display = Display("start_screen", "normal_mode")
