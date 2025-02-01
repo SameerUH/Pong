@@ -1,3 +1,4 @@
+#Imports/access to other files/modules.
 import pygame, sys, math
 from .display import display
 from .ball import ball
@@ -6,7 +7,33 @@ pygame.init()
 
 
 class Button(pygame.sprite.Sprite):
+    """
+    Class for the buttons/text in the game.
+
+    Attributes:
+        colour (list[ints]): Background colour of the button which is passed in through the display object.
+        x, y (int): Coordinates of the button.
+        width, height (int): Controls the size of the button.
+        shape (inbuilt): Creates the rectangular shape of the button.
+        text (string): Stores the text of the button passed through the object creation.
+        font_size (int): Stores the size of the font for the text.
+        display_text (inbuilt): Renders the text to be displayed.
+        display_text_rect (inbuilt): Gets the shape of the text to be displayed..
+        display.SCREEN.blit (inbuilt): Displays the text on the button.
+        """
+    
     def __init__(self, colour, x, y, width, height, text, font_size):
+        """
+        Constructor for the button class.
+
+        Args:
+            colour (int): Initial background colour of the buttons.
+            x, y (int): Initial coordinates for the buttons in the game.
+            width, height (int): Initial size of the buttons.
+            shape (inbuilt): Initial rectangular shape of the button.
+            text (string): Initial text of the buttons.
+            font_size (int): Initial size of the font for the text.
+        """
         self.colour = colour
         self.x = x
         self.y = y
@@ -15,14 +42,13 @@ class Button(pygame.sprite.Sprite):
         self.shape = pygame.Rect(self.x, self.y, self.width, self.height)
         self.text = text
         self.font_size = font_size
-        pygame.draw.rect(display.SCREEN, self.colour, self.shape)
-        self.font = pygame.font.Font('freesansbold.ttf', self.font_size)
-        display_text = self.font.render(self.text, True, display.WHITE)
-        display_text_rect = display_text.get_rect()
-        display_text_rect.center = (self.x + (self.width/2), self.y - (self.height / 2) )
-        display.SCREEN.blit(display_text, display_text_rect)
-
+    
     def draw_updatescreen(self):
+        """
+        Function which constantly displays the button.
+
+        Uses inbuilt functions such as .Font, .Rect, .render etc, to control the attributes of the text.
+        """
         self.shape = pygame.Rect(self.x, self.y, self.width, self.height)
         pygame.draw.rect(display.SCREEN, self.colour, self.shape)
         font = pygame.font.Font('freesansbold.ttf', self.font_size)
@@ -32,25 +58,40 @@ class Button(pygame.sprite.Sprite):
         display.SCREEN.blit(display_text, display_text_rect)
     
     def interaction(self, mouse_pos, mouse_clicked):
+        """
+        Function which controls what happens when each button is clicked.
+
+        First checks if the mouse is within the button shape, then checks if the button has been clicked, finally checks which screen is being displayed and which button has been clicked.
+        
+        Args:
+            mouse_pos (list[int]): Constantly tracks the mouse position to check if it's in a button shape or not.
+            mouse_clicked (boolean): Tracks when the mouse has been clicked using booleans (True/False).
+        """
         if mouse_pos[1] < self.shape[1] + self.shape[3] and mouse_pos[1] > self.shape[1]:
             if mouse_pos[0] > self.shape[0] and mouse_pos[0] < self.shape[0] + self.shape[2]:
                 if mouse_clicked:
                     if display.state == "start_screen":
                         if self.text == "PLAY GAME":
                             display.state = "game_screen"
+
                         elif self.text == "SETTINGS":
                             display.state = "settings_screen"
+
                         elif self.text == "QUIT":
                             pygame.quit()
                             sys.exit()
+
                     elif display.state == "game_screen":
                         if self.text == "PAUSE":
                             display.state = "pause_screen"
+
                     elif display.state == "pause_screen":
                         if self.text == "CONTINUE":
                             display.state = "game_screen"
+
                         elif self.text == "END GAME":
                             display.state = "start_screen"
+
                     elif display.state == "settings_screen":
                         if self.text == "GO BACK":
                             display.state = "start_screen"
@@ -90,6 +131,7 @@ class Button(pygame.sprite.Sprite):
                         if self.text == "SCORE:MAX":
                             game_setting.score = 1
                             self.text = "SCORE: 1"
+
                         elif self.text == f"SCORE: {game_setting.score}":
                             game_setting.score += 1
                             self.text = f"SCORE: {game_setting.score}"
@@ -101,21 +143,33 @@ class Button(pygame.sprite.Sprite):
                         if self.text == "QUIT":
                             display.state = "start_screen"
                         
-                    pygame.time.delay(100)
+                    pygame.time.delay(100) #Delay to stop multiple inputs when the mouse has been clicked once.
                             
 
-
-
     def update(self, x, y): 
+        """
+        Function which updates the x and y values of certain buttons/text.
+
+        Args:
+            x (int): Tracks the x-coordinate of the object.
+            y (int): Tracks the y-coordinate of the object.
+        """
         self.x = x
         self.y = y
     
     def functions(self, mouse_pos, mouse_clicked):
+        """
+        Function which contains the functions above to call with one line. (Avoids messy code)
+        
+        Args:
+            mouse_pos (list[int]): Used for interaction checks.
+            mouse_clicked (boolean): Also used for interaction checks.
+        """
         self.draw_updatescreen()
         self.interaction(mouse_pos, mouse_clicked)
         self.update(self.x, self.y)
 
-
+#Creation of all the buttons/text that are used in the program with parameters passed through.
 PONG_TITLE = Button(display.DARK_GRAY, 425, 50, 300, 100, "PONG", 50)
 PLAY_GAME = Button(display.BLUE, 425, 200, 300, 100, "PLAY GAME", 50)
 SETTINGS = Button(display.RED, 200, 400, 300, 100, "SETTINGS", 50)

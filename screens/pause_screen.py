@@ -1,3 +1,4 @@
+#Imports/file management to allow use of other objects/modules.
 import pygame
 from objects import display, player, ball, enemy, CONTINUE, PAUSED, END_GAME
 from .start_screen import start_screen
@@ -11,13 +12,7 @@ enemy_score = font.render(f"Enemy Score: {enemy.score}", True, display.BLACK)
 enemy_score_rect = enemy_score.get_rect()
 enemy_score_rect.center = (1000, 650)
 
-"""
-TO-DO:
-Finish layout
-    - End game button in red which will go back to the start screen.
-    - Big "PAUSED" text note at the top.
-    - Maybe have the Continue button on the left and the End game button on the right.
-"""
+
 def pause_screen(mouse_pos, mouse_clicked, user_input):
     if display.vision == "normal_mode":
         display.SCREEN.fill(display.GRAY)
