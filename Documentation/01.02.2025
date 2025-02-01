@@ -1,0 +1,7 @@
+Decided to tidy up some files, making them easier to read by removing irrelevant code and adding docstrings to every function explaining what each parameter does and the purpose of the functions.
+
+Managed to do all the object python files and the game_screen.py file of the screens folder, gonna hopefully finish it all of next commit.
+
+I also realized that there may be some more unneccessary code which is slightly worrying as I don't want to make it too complicated and give myself so much work going back over files to make them look nice even though I still have the entire program to finish off.
+
+In the future I think I'm going to finish adding docstrings and removing unneccessary code and then focus on adding the enemy A.I. and adding a screen to let the user pick between a 2 player game or a single player game against the A.I.
