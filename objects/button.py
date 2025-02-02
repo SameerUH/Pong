@@ -70,9 +70,10 @@ class Button(pygame.sprite.Sprite):
         if mouse_pos[1] < self.shape[1] + self.shape[3] and mouse_pos[1] > self.shape[1]:
             if mouse_pos[0] > self.shape[0] and mouse_pos[0] < self.shape[0] + self.shape[2]:
                 if mouse_clicked:
+                    #Start screen buttons:
                     if display.state == "start_screen":
                         if self.text == "PLAY GAME":
-                            display.state = "game_screen"
+                            display.state = "computer_decider_screen"
 
                         elif self.text == "SETTINGS":
                             display.state = "settings_screen"
@@ -80,7 +81,18 @@ class Button(pygame.sprite.Sprite):
                         elif self.text == "QUIT":
                             pygame.quit()
                             sys.exit()
-
+                    
+                    #Gamemode screen buttons:
+                    elif display.state == "computer_decider_screen":
+                        if self.text == "2 PLAYERS":
+                            display.state = "game_screen"
+                            game_setting.computer = False
+                        
+                        elif self.text == "COMPUTER":
+                            display.state = "game_screen"
+                            game_setting.computer = True
+                    
+                    #Main game screen buttons:
                     elif display.state == "game_screen":
                         if self.text == "PAUSE":
                             display.state = "pause_screen"
@@ -92,6 +104,7 @@ class Button(pygame.sprite.Sprite):
                         elif self.text == "END GAME":
                             display.state = "start_screen"
 
+                    #Settings screen buttons:
                     elif display.state == "settings_screen":
                         if self.text == "GO BACK":
                             display.state = "start_screen"
@@ -128,7 +141,7 @@ class Button(pygame.sprite.Sprite):
                             display.vision = "normal_mode"
                         
 
-                        if self.text == "SCORE:MAX":
+                        elif self.text == "SCORE:MAX":
                             game_setting.score = 1
                             self.text = "SCORE: 1"
 
@@ -138,7 +151,8 @@ class Button(pygame.sprite.Sprite):
                             if game_setting.score > 10:
                                 game_setting.score = math.inf
                                 self.text = "SCORE:MAX"
-                
+
+                    #Winner screen buttons:
                     elif display.state == "winner_screen":
                         if self.text == "QUIT":
                             display.state = "start_screen"
@@ -169,18 +183,33 @@ class Button(pygame.sprite.Sprite):
         self.interaction(mouse_pos, mouse_clicked)
         self.update(self.x, self.y)
 
-#Creation of all the buttons/text that are used in the program with parameters passed through.
+#Creation of all the buttons/text that are used in the program with parameters passed through:
+
+#Start screen:
 PONG_TITLE = Button(display.DARK_GRAY, 425, 50, 300, 100, "PONG", 50)
 PLAY_GAME = Button(display.BLUE, 425, 200, 300, 100, "PLAY GAME", 50)
 SETTINGS = Button(display.RED, 200, 400, 300, 100, "SETTINGS", 50)
+QUIT = Button(display.PURPLE, 600, 400, 300, 100, "QUIT", 50)
+
+#Main game:
 PAUSE = Button(display.GREEN, 425, 600, 300, 100, "PAUSE", 50)
+
+#Pause screen:
 CONTINUE = Button(display.GREEN, 200, 400, 300, 100, "CONTINUE", 50)
 PAUSED = Button(display.BLACK, 400, 200, 300, 100, "PAUSED", 50)
 END_GAME = Button(display.RED, 600, 400, 300, 100, "END GAME", 50)
-QUIT = Button(display.PURPLE, 600, 400, 300, 100, "QUIT", 50)
+
+#Settings screen:
 GO_BACK = Button(display.ORANGE, 100, 200, 300, 100, "GO BACK", 50)
 COLOURBLIND = Button(display.BLUE, 700, 200, 300, 100, "COLOURBLIND", 35)
 SPEED = Button(display.YELLOW, 700, 400, 300, 100, "SPEED: NORMAL", 35)
 SCORE = Button(display.MAROON, 100, 400, 325, 100, "SCORE:MAX", 50)
+
+#Winner screen:
 CONGRATULATIONS = Button(display.GREEN, 300, 50, 600, 100, "CONGRATULATIONS!!!", 50)
 WINNER = Button(display.BLUE, 375, 225, 400, 100, "NONE", 50)
+
+#Computer decider screen:
+TWO_PLAYER = Button(display.BLUE, 200, 300, 300, 100, "2 PLAYERS", 50)
+COMPUTER = Button(display.RED, 600, 300, 300, 100, "COMPUTER", 50)
+GAMEMODE = Button(display.DARK_GRAY, 400, 100, 325, 100, "GAMEMODE", 50)

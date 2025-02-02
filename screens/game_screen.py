@@ -14,8 +14,11 @@ enemy_score = font.render(f"Enemy Score: {enemy.score}", True, display.BLACK)
 enemy_score_rect = enemy_score.get_rect()
 enemy_score_rect.center = (1000, 650)
 
+tempx = -100
+tempy = -100
 #GAME DISPLAY
 def game_screen(mouse_pos, mouse_clicked, user_input):
+    global tempx, tempy, temp_x, temp_y
     """
     Function which constantly displays the game screen.
 
@@ -52,6 +55,15 @@ def game_screen(mouse_pos, mouse_clicked, user_input):
     display.SCREEN.blit(player_score, player_score_rect)
     display.SCREEN.blit(enemy_score, enemy_score_rect)
 
+    
+    if ball.wall_hit == True:
+        tempx, tempy = ball.x, ball.y
+        ball.wall_hit = False
+    
+    pygame.draw.circle(display.SCREEN, display.GREEN, (tempx, tempy), 50, 10)
+
+    pygame.draw.line(display.SCREEN, display.BLUE, (tempx, tempy), (ball.x, ball.y), 10)
+    
     #Selection to check if a player has won.
     if player.score == game_setting.score:
         display.state = "winner_screen"
@@ -61,7 +73,7 @@ def game_screen(mouse_pos, mouse_clicked, user_input):
         WINNER.text = "ENEMY WINS!"
 
     #Object/Screen updates:
-    player.functions(user_input)
-    enemy.functions(user_input)
+    player.functions(user_input, ball)
+    enemy.functions(user_input, ball)
     ball.functions()
     PAUSE.functions(mouse_pos, mouse_clicked)

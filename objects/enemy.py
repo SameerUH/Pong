@@ -1,6 +1,7 @@
 #Imports/file management to allowing use of other modules/objects.
-import pygame
+import pygame, random as rand
 from .display import display
+from .player import player
 from game_settings import game_setting
 
 #Enemy class:
@@ -57,7 +58,7 @@ class Enemy(pygame.sprite.Sprite):
         self.score = score
         self.colour = colour
 
-    def movement(self, user_input):
+    def movement(self, user_input, ball):
         """
         Function which controls the movement of the enemy when the user uses the keyboard and keeps track of the direction the enemy is going.
         
@@ -69,26 +70,69 @@ class Enemy(pygame.sprite.Sprite):
             user_input (inbuilt): Defined in main.py and keeps track whenever the user presses a certain key.
         """
         if display.state == "game_screen":
-            if (user_input[pygame.K_UP]):
-                self.y -= game_setting.speed
-                self.direction = "up"
-            elif (user_input[pygame.K_DOWN]):
-                self.y += game_setting.speed
-                self.direction = "down"
+            if game_setting.computer == False:
+                if (user_input[pygame.K_UP]):
+                    self.y -= game_setting.speed
+                    self.direction = "up"
+                elif (user_input[pygame.K_DOWN]):
+                    self.y += game_setting.speed
+                    self.direction = "down"
             
-            if (self.y + 60) >= display.GAMEHEIGHT:
-                self.y -= game_setting.speed
-            elif self.y <= 0:
-                self.y += game_setting.speed
-
-        elif display.state == "pause_screen":
+            elif game_setting.computer == True:
+                if self.y > ball.y:
+                    self.y -= game_setting.speed
+                    self.direction = "up"
+                elif self.y < ball.y:
+                    self.y += game_setting.speed
+                    self.directoin = "down"
+    
+        if display.state == "pause_screen":
             if (user_input[pygame.K_UP]):
                 self.y -= 0
             elif (user_input[pygame.K_DOWN]):
                 self.y += 0
+        
+        if (self.y + 60) >= display.GAMEHEIGHT:
+            self.y -= game_setting.speed
+        elif self.y <= 0:
+            self.y += game_setting.speed
 
+    def collision(self, ball):
+        """
+        Checks when the ball collides with the enemy and changes it's behaviour accordingly. Uses '-abs' function to use convert positive speeds to negatives making the ball go the opposite direction.
 
-    def functions(self, user_input):
+        Parameters:
+            Ball (object): Collides with players and used to score points.
+
+        Output:
+            Depending on the direction the enemy are going, the ball with move up or down, the angle at which the ball moves is random.
+        """
+
+        #Ball colliding with enemy:
+        if ball.shape.colliderect(self.hitbox):
+            ball.wall_hit = False
+            ball.x_velocity = rand.uniform(game_setting.x_velocity_min, game_setting.x_velocity_max)
+            if enemy.direction == "up":
+                ball.y_velocity = rand.uniform(game_setting.y_velocity_min, game_setting.y_velocity_max)
+            elif enemy.direction == "down":
+                ball.y_velocity = rand.uniform(-abs(game_setting.y_velocity_min), -abs(game_setting.y_velocity_max))
+
+    def enemy_score(self, ball):
+        """
+        Function which constantly checks if the enemy has gained a point by checking if the x value has passed a certain value. If it has it updates the score and sets the ball back to the center of the game.
+
+        Args:
+            Ball (object): Collides with players and used to score points.
+        """
+        
+        if ball.x < 0:
+            ball.x, ball.y = display.SCREENWIDTH / 2, display.SCREENHEIGHT / 2
+            ball.x_velocity = rand.choice([1, 1])
+            ball.y_velocity = 0
+            self.score += 1
+    
+
+    def functions(self, user_input, ball):
         """
         Function which uses and calls the other functions above, making it easier to update multiple values and checks simultaneously.
 
@@ -97,7 +141,9 @@ class Enemy(pygame.sprite.Sprite):
         """
         self.draw_updatescreen()
         self.update(self.y, self.score, self.colour)
-        self.movement(user_input)
+        self.movement(user_input, ball)
+        self.collision(ball)
+        self.enemy_score(ball)
 
 #Object creation
 enemy = Enemy(display.BLACK, display.SCREENHEIGHT / 2)

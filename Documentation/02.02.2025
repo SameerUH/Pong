@@ -1,0 +1,9 @@
+Finished adding docstrings and tidying up code in all files.
+
+Started adding the computer option to the game and it was alot more complicated then I expected, I have a good idea of what I want to happen but figuring it out and making a solution for it may be incredibly difficult and mind numbing.
+
+So far I've got a screen to let the user decide which gamemode they want (2 player or computer) which is displayed after hitting the 'play game' button in the start screen.
+
+Upon trying to add a computer A.I. to the game I ran into an issue causing deadlocks for the player and ball as well as enemy and ball files, solution to this was to move the collision code for the ball into both the enemy and player files. Trying to figure out how I can predict future movement for the ball but it's probably the more complicated part of the game, but I have it so if the ball collides with the top or bottom walls it draws a circle at the coordinates of collision, then it draws a line from that circle to the ball moving away (I basically need the opposite for my solution).
+
+Future commits would be finding a solution and implementing it for the ball movement predictions.

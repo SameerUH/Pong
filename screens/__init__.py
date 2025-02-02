@@ -4,3 +4,4 @@ from .game_screen import game_screen
 from .settings_screen import settings_screen
 from .pause_screen import pause_screen
 from .winner_screen import winner_screen
+from .computerdecider_screen import computer_decider_screen
