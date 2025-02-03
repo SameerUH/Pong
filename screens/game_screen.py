@@ -14,11 +14,13 @@ enemy_score = font.render(f"Enemy Score: {enemy.score}", True, display.BLACK)
 enemy_score_rect = enemy_score.get_rect()
 enemy_score_rect.center = (1000, 650)
 
-tempx = -100
-tempy = -100
+tempx_0 = ball.x
+tempy_0 = ball.y
+tempx_600 = ball.x
+tempy_600 = ball.y
 #GAME DISPLAY
 def game_screen(mouse_pos, mouse_clicked, user_input):
-    global tempx, tempy, temp_x, temp_y
+    global tempx_0, tempy_0, tempx_600, tempy_600
     """
     Function which constantly displays the game screen.
 
@@ -56,13 +58,22 @@ def game_screen(mouse_pos, mouse_clicked, user_input):
     display.SCREEN.blit(enemy_score, enemy_score_rect)
 
     
-    if ball.wall_hit == True:
-        tempx, tempy = ball.x, ball.y
-        ball.wall_hit = False
-    
-    pygame.draw.circle(display.SCREEN, display.GREEN, (tempx, tempy), 50, 10)
+    if tempy_0 > 0:
+        if tempy_0 < 10:
+            tempy_0 -= 0.1
+            tempx_0 -= 0.1
+        else:
+            tempy_0 -= (ball.y_velocity * 5)
+            tempx_0 -= (ball.x_velocity * 5)
+        pygame.draw.line(display.SCREEN, display.BLUE, (ball.x, ball.y), (tempx_0, tempy_0), 10)
+        pygame.draw.circle(display.SCREEN, display.GREEN, (tempx_0, tempy_0), 50, 10)
+        print(tempx_0, tempy_0)
 
-    pygame.draw.line(display.SCREEN, display.BLUE, (tempx, tempy), (ball.x, ball.y), 10)
+    if tempy_0 < 0:
+        tempx_0 = ball.x
+        tempy_0 = ball.y
+
+
     
     #Selection to check if a player has won.
     if player.score == game_setting.score:

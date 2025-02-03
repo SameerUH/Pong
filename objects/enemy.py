@@ -77,6 +77,8 @@ class Enemy(pygame.sprite.Sprite):
                 elif (user_input[pygame.K_DOWN]):
                     self.y += game_setting.speed
                     self.direction = "down"
+                else:
+                    self.direction = "stationary"
             
             elif game_setting.computer == True:
                 if self.y > ball.y:
@@ -84,7 +86,9 @@ class Enemy(pygame.sprite.Sprite):
                     self.direction = "up"
                 elif self.y < ball.y:
                     self.y += game_setting.speed
-                    self.directoin = "down"
+                    self.direction = "down"
+                else:
+                    self.direction = "stationary"
     
         if display.state == "pause_screen":
             if (user_input[pygame.K_UP]):

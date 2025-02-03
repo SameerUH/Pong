@@ -60,6 +60,8 @@ class Player(pygame.sprite.Sprite):
             elif (user_input[pygame.K_s]):
                 self.y += game_setting.speed
                 self.direction = "down"
+            else:
+                self.direction = "stationary"
             
             if (self.y + 60) >= display.GAMEHEIGHT:
                 self.y -= game_setting.speed
