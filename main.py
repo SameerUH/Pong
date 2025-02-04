@@ -4,7 +4,7 @@ To-Do:
 2. Start screen. ####
     - Black screen with buttons. ####
 3. Settings screen. ###
-4. Computer A.I. ---
+4. Computer A.I. ###
 5. Changes to the ball movement. ###
 6. Possibly an intro scene.
 7. Do I think I can add animations??
@@ -61,6 +61,9 @@ while True:
     #I will probably change it back to "PONG" when the game ends.
 
     #Selection to decide which functions should run when the user navigates through the game.
+    if display.state == "intro_screen":
+        #INTRO SCREEN
+        intro_screen()
     if display.state == "start_screen":
         #START SCREEN
         start_screen(mouse_pos, mouse_clicked)

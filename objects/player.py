@@ -75,7 +75,7 @@ class Player(pygame.sprite.Sprite):
                 self.y += 0
     
 
-    def collision(self, ball):
+    def collision(self):
         """
         Checks when the ball collides with the player and changes it's behaviour accordingly. Uses '-abs' function to use convert positive speeds to negatives making the ball go the opposite direction.
 
@@ -88,13 +88,16 @@ class Player(pygame.sprite.Sprite):
 
         if ball.shape.colliderect(self.hitbox):
             ball.wall_hit = False
+            ball.direction = "right"
+            ball.wall_predict_x = ball.x
+            ball.wall_predict_y = ball.y
             ball.x_velocity = rand.uniform(-abs(game_setting.x_velocity_min), -abs(game_setting.x_velocity_max))
             if self.direction == "up":
                 ball.y_velocity = rand.uniform(game_setting.y_velocity_min, game_setting.y_velocity_max)
             elif self.direction == "down":
                 ball.y_velocity = rand.uniform(-abs(game_setting.y_velocity_min), -abs(game_setting.y_velocity_max))
     
-    def player_score(self, ball):
+    def player_score(self):
         """
         Function which constantly checks if the player has gained a point by checking if the x value has passed a certain value. If it has it updates the score and sets the ball back to the center of the game.
 
@@ -104,7 +107,7 @@ class Player(pygame.sprite.Sprite):
         
         if ball.x > display.SCREENWIDTH:
             ball.x, ball.y = display.SCREENWIDTH / 2, display.SCREENHEIGHT / 2
-            ball.x_velocity = rand.choice([1, 1])
+            ball.x_velocity = rand.choice([1, -1])
             ball.y_velocity = 0
             self.score += 1
     
@@ -124,15 +127,15 @@ class Player(pygame.sprite.Sprite):
     
 
 
-    def functions(self, user_input, ball):
+    def functions(self, user_input):
         """
         Function which calls and updates other functions above, used to keep track of multiple changes with one line.
         """
         self.draw_updatescreen()
         self.update(self.y, self.score, self.colour)
         self.movement(user_input)
-        self.player_score(ball)
-        self.collision(ball)
+        self.player_score()
+        self.collision()
 
 #Player creation.
 player = Player(display.BLACK, display.SCREENHEIGHT / 2)

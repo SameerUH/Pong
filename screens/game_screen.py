@@ -14,13 +14,15 @@ enemy_score = font.render(f"Enemy Score: {enemy.score}", True, display.BLACK)
 enemy_score_rect = enemy_score.get_rect()
 enemy_score_rect.center = (1000, 650)
 
-tempx_0 = ball.x
-tempy_0 = ball.y
-tempx_600 = ball.x
-tempy_600 = ball.y
+#wall_predict_x = ball.x
+#wall_predict_y = ball.y
+
+#enemy_predict_x = wall_predict_x
+#enemy_predict_y = wall_predict_y
+
 #GAME DISPLAY
 def game_screen(mouse_pos, mouse_clicked, user_input):
-    global tempx_0, tempy_0, tempx_600, tempy_600
+    #global wall_predict_x, wall_predict_y
     """
     Function which constantly displays the game screen.
 
@@ -58,22 +60,44 @@ def game_screen(mouse_pos, mouse_clicked, user_input):
     display.SCREEN.blit(enemy_score, enemy_score_rect)
 
     
-    if tempy_0 > 0:
-        if tempy_0 < 10:
-            tempy_0 -= 0.1
-            tempx_0 -= 0.1
+    if ball.wall_predict_y > 0:
+        if ball.wall_predict_y < 10:
+            ball.wall_predict_y -= 0.1
+            ball.wall_predict_x -= 0.1
         else:
-            tempy_0 -= (ball.y_velocity * 5)
-            tempx_0 -= (ball.x_velocity * 5)
-        pygame.draw.line(display.SCREEN, display.BLUE, (ball.x, ball.y), (tempx_0, tempy_0), 10)
-        pygame.draw.circle(display.SCREEN, display.GREEN, (tempx_0, tempy_0), 50, 10)
-        print(tempx_0, tempy_0)
+            ball.wall_predict_y -= (ball.y_velocity * 1.5)
+            ball.wall_predict_x -= (ball.x_velocity * 1.5)
+        #print(tempx_0, tempy_0)
+    
+    elif ball.wall_predict_y < 600:
+        if ball.wall_predict_y > 590:
+            ball.wall_predict_y += 0.1
+            ball.wall_predict_x += 0.1
+        else:
+            ball.wall_predict_y += (ball.y_velocity * 1.5)
+            ball.wall_predict_x += (ball.x_velocity * 1.5)
+ 
+    if ball.wall_predict_y < 0:
+        ball.wall_predict_y = ball.y
+        ball.wall_predict_x = ball.x
+    elif ball.wall_predict_y > 600:
+        ball.wall_predict_y = ball.y
+        ball.wall_predict_x = ball.x
+    
+    if ball.wall_predict_x < 100:
+        ball.wall_predict_y = ball.y
+        ball.wall_predict_x = ball.x
+    elif ball.wall_predict_x > 1050:
+        ball.wall_predict_y = ball.y
+        ball.wall_predict_x = 1050
+    
+    #line_x_700 = pygame.draw.line(display.SCREEN, display.BLUE, (700, 0), (700, 600), 5)
+    #line_x_1000 = pygame.draw.line(display.SCREEN, display.BLUE, (1000, 0), (1000, 600), 5)
 
-    if tempy_0 < 0:
-        tempx_0 = ball.x
-        tempy_0 = ball.y
 
-
+    line_predict = pygame.draw.line(display.SCREEN, display.BLUE, (ball.x, ball.y), (ball.wall_predict_x, ball.wall_predict_y), 10)
+    #line_predict2 = pygame.draw.line(display.SCREEN, display.PURPLE, (ball.wall_predict_x, ball.wall_predict_y), (enemy.x, enemy.y), 10)
+    circle_predict = pygame.draw.circle(display.SCREEN, display.GREEN, (ball.wall_predict_x, ball.wall_predict_y), 30, 10)
     
     #Selection to check if a player has won.
     if player.score == game_setting.score:
@@ -84,7 +108,7 @@ def game_screen(mouse_pos, mouse_clicked, user_input):
         WINNER.text = "ENEMY WINS!"
 
     #Object/Screen updates:
-    player.functions(user_input, ball)
-    enemy.functions(user_input, ball)
+    player.functions(user_input)
+    enemy.functions(user_input)
     ball.functions()
     PAUSE.functions(mouse_pos, mouse_clicked)

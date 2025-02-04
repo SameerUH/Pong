@@ -37,6 +37,9 @@ class Ball(pygame.sprite.Sprite):
         self.temp_y_velocity = self.y_velocity
         self.shape = pygame.draw.circle(display.SCREEN, self.colour, (self.x, self.y), self.radius)
         self.wall_hit = False
+        self.wall_predict_x = self.x
+        self.wall_predict_y = self.y
+        self.direction = "unknown"
     
     def draw_updatescreen(self):
         """
@@ -68,6 +71,9 @@ class Ball(pygame.sprite.Sprite):
         self.temp_y_velocity = self.y_velocity
         self.colour = colour
         self.wall_hit = wall_hit
+        self.wall_predict_x = self.wall_predict_x
+        self.wall_predict_y = self.wall_predict_y
+        self.direction = self.direction
 
 
     def movement(self):
@@ -77,6 +83,9 @@ class Ball(pygame.sprite.Sprite):
 
         self.x -= self.x_velocity
         self.y -= self.y_velocity
+
+        if self.y_velocity == 0:
+            self.wall_hit = True
     
     def collision(self):
         """
@@ -88,9 +97,13 @@ class Ball(pygame.sprite.Sprite):
         if self.y < 0:
             self.y_velocity = -abs(self.y_velocity)
             self.wall_hit = True
+            ball.wall_predict_y = ball.y
+            ball.wall_predict_x = ball.x
         elif ball.y > display.GAMEHEIGHT - 10: #-10 to make it look realistic, before part of the ball would cross over the blue outline.
             self.wall_hit = True
             self.y_velocity = abs(self.y_velocity)
+            ball.wall_predict_y = ball.y
+            ball.wall_predict_x = ball.x
 
         
 

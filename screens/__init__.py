@@ -5,3 +5,4 @@ from .settings_screen import settings_screen
 from .pause_screen import pause_screen
 from .winner_screen import winner_screen
 from .computerdecider_screen import computer_decider_screen
+from .animation_screen import intro_screen

@@ -1,0 +1,7 @@
+Managed to get the computer to work efficiently and make it look more human by finishing the prediction algorithm where the game could predict where the ball was going to go and provide a set of coordinates and then using that information, the enemy could go to that position if the x-coordinates were the same amongst the prediction and the enemy. Given that the x-coordinate was a constant for the enemy, it was fairly easy to wait for them to match.
+
+It was still difficult to play against the enemy computer so I decided to make it start moving if the ball's x-coordinate went past 900, making the reaction time similar to that of a human and allowing the player to have a chance to win.
+
+After I started working on animation, I think I'm only going to go for an intro scene where the letters "PONG" are written out on display before displaying the start screen, managed to use the pygame.draw.line and selection statements such as if, elif and else to time it perfectly. So far I only have half of the letter 'P' but pretty confident that next commit I will have it all completely finished.
+
+I think after I finish doing the intro scene and finalizing some comments/tidying up some code, the project will be completely finished and overall I'm pretty happy with it and have thoroughly enjoyed the entire process considering I barely looked anything up and logically thought of solutions.

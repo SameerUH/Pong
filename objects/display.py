@@ -46,4 +46,4 @@ class Display(pygame.sprite.Sprite):
         self.paused = None
 
 #Object creation with parameters passed in.
-display = Display("start_screen", "normal_mode")
+display = Display("intro_screen", "normal_mode")

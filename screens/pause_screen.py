@@ -55,8 +55,8 @@ def pause_screen(mouse_pos, mouse_clicked, user_input):
 
     #Updates for variables and objects.
     SCREEN_OUTLINE = pygame.draw.rect(display.SCREEN, display.BLUE, (0, 0, display.SCREENWIDTH, display.GAMEHEIGHT), 2)
-    player.functions(user_input, ball)
-    enemy.functions(user_input, ball)
+    player.functions(user_input)
+    enemy.functions(user_input)
     ball.draw_updatescreen()
     PAUSED.functions(mouse_pos, mouse_clicked)
     CONTINUE.functions(mouse_pos, mouse_clicked)
