@@ -82,12 +82,19 @@ class Enemy(pygame.sprite.Sprite):
                     self.direction = "stationary"
             
             elif game_setting.computer == True:
-                if self.y > ball.wall_predict_y and ball.wall_hit == True and ball.direction == "right" and ball.x > 900:
+                if (self.y + 30) > ball.wall_predict_y and ball.wall_hit == True and ball.direction == "right" and ball.x > 900:
                     self.y -= game_setting.speed
                     self.direction = "up"
-                elif self.y < ball.wall_predict_y and ball.wall_hit == True and ball.direction == "right" and ball.x > 900:
+                elif (self.y + 30) < ball.wall_predict_y and ball.wall_hit == True and ball.direction == "right" and ball.x > 900:
                     self.y += game_setting.speed
                     self.direction = "down"
+                elif ball.x_velocity == -1:
+                    if self.y > ball.wall_predict_y:
+                        self.y -= game_setting.speed
+                        self.direction = "up"
+                    elif self.y < ball.wall_predict_y:
+                        self.y += game_setting.speed
+                        self.direction = "down"
                 else:
                     self.direction = "stationary"
     

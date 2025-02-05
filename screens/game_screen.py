@@ -91,8 +91,8 @@ def game_screen(mouse_pos, mouse_clicked, user_input):
         ball.wall_predict_y = ball.y
         ball.wall_predict_x = 1050
     
-    #line_x_700 = pygame.draw.line(display.SCREEN, display.BLUE, (700, 0), (700, 600), 5)
-    #line_x_1000 = pygame.draw.line(display.SCREEN, display.BLUE, (1000, 0), (1000, 600), 5)
+    line_x_700 = pygame.draw.line(display.SCREEN, display.MAROON, (700, 0), (700, 600), 5)
+    line_x_1000 = pygame.draw.line(display.SCREEN, display.MAROON, (1000, 0), (1000, 600), 5)
 
 
     line_predict = pygame.draw.line(display.SCREEN, display.BLUE, (ball.x, ball.y), (ball.wall_predict_x, ball.wall_predict_y), 10)

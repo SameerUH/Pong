@@ -91,6 +91,9 @@ class Button(pygame.sprite.Sprite):
                         elif self.text == "COMPUTER":
                             display.state = "game_screen"
                             game_setting.computer = True
+                        
+                        elif self.text == "GO BACK":
+                            display.state = "start_screen"
                     
                     #Main game screen buttons:
                     elif display.state == "game_screen":

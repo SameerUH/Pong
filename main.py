@@ -29,6 +29,8 @@ clock = pygame.time.Clock()
 #Initializes the mouse_clicked variable to help keep track of user inputs.
 mouse_clicked = False
 
+fullscreen = False
+
 #Initializes pygame modules.
 pygame.init()
 
@@ -52,13 +54,15 @@ while True:
         mouse_clicked = False
 
     #Used to allow fullscreen.
-    if (user_input[pygame.K_F11]):
+    if (user_input[pygame.K_F11]) and fullscreen == False:
         pygame.display.toggle_fullscreen()
+        fullscreen = True
+    elif (user_input[pygame.K_F11]) and fullscreen == True:
+        fullscreen = False
 
     #Used to keep track of FPS and displays it as the window title when run.
     clock.tick()
-    pygame.display.set_caption("FPS: " + str(int(clock.get_fps())))
-    #I will probably change it back to "PONG" when the game ends.
+    pygame.display.set_caption("PONG")
 
     #Selection to decide which functions should run when the user navigates through the game.
     if display.state == "intro_screen":

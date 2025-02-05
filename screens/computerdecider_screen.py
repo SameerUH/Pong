@@ -13,10 +13,12 @@ Make the computer after.
 """
 
 import pygame
-from objects import display, TWO_PLAYER, COMPUTER, GAMEMODE
+from objects import display, TWO_PLAYER, COMPUTER, GAMEMODE, GO_BACK
 
 def computer_decider_screen(mouse_pos, mouse_clicked):
     display.SCREEN.fill(display.BLACK)
     GAMEMODE.functions(mouse_pos, mouse_clicked)
     TWO_PLAYER.functions(mouse_pos, mouse_clicked)
     COMPUTER.functions(mouse_pos, mouse_clicked)
+    GO_BACK.x, GO_BACK.y = 425, 500
+    GO_BACK.functions(mouse_pos, mouse_clicked)
