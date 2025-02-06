@@ -70,6 +70,11 @@ class Button(pygame.sprite.Sprite):
         if mouse_pos[1] < self.shape[1] + self.shape[3] and mouse_pos[1] > self.shape[1]:
             if mouse_pos[0] > self.shape[0] and mouse_pos[0] < self.shape[0] + self.shape[2]:
                 if mouse_clicked:
+                    #Intro screen buttons:
+                    if display.state == "intro_screen":
+                        if self.text == "SKIP":
+                            display.state = "start_screen"
+
                     #Start screen buttons:
                     if display.state == "start_screen":
                         if self.text == "PLAY GAME":
@@ -187,6 +192,9 @@ class Button(pygame.sprite.Sprite):
         self.update(self.x, self.y)
 
 #Creation of all the buttons/text that are used in the program with parameters passed through:
+
+#Intro screen:
+SKIP = Button(display.DARK_GRAY, 450, 600, 300, 100, "SKIP", 50)
 
 #Start screen:
 PONG_TITLE = Button(display.DARK_GRAY, 425, 50, 300, 100, "PONG", 50)

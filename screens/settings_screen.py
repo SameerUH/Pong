@@ -30,6 +30,7 @@ def settings_screen(mouse_pos, mouse_clicked):
     #Updates for the objects using the functions method.
     SETTINGS.x, SETTINGS.y = 425, 50
     SETTINGS.functions(mouse_pos, mouse_clicked)
+    GO_BACK.x, GO_BACK.y = 100, 200
     GO_BACK.functions(mouse_pos, mouse_clicked)
     COLOURBLIND.functions(mouse_pos, mouse_clicked)
     SPEED.functions(mouse_pos, mouse_clicked)

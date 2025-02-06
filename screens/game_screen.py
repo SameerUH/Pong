@@ -14,15 +14,8 @@ enemy_score = font.render(f"Enemy Score: {enemy.score}", True, display.BLACK)
 enemy_score_rect = enemy_score.get_rect()
 enemy_score_rect.center = (1000, 650)
 
-#wall_predict_x = ball.x
-#wall_predict_y = ball.y
-
-#enemy_predict_x = wall_predict_x
-#enemy_predict_y = wall_predict_y
-
 #GAME DISPLAY
 def game_screen(mouse_pos, mouse_clicked, user_input):
-    #global wall_predict_x, wall_predict_y
     """
     Function which constantly displays the game screen.
 
@@ -34,6 +27,7 @@ def game_screen(mouse_pos, mouse_clicked, user_input):
         mouse_pos (list[ints]): List of integers which is used as the coordinates of the mouse.
         mouse_clicked(boolean): Boolean value to check if the mouse has been clicked or not.
     """
+    
     #Selection of whether or not the game is in colourblind mode or not.
     if display.vision == "normal_mode":
         display.SCREEN.fill(display.GRAY)
@@ -67,7 +61,6 @@ def game_screen(mouse_pos, mouse_clicked, user_input):
         else:
             ball.wall_predict_y -= (ball.y_velocity * 1.5)
             ball.wall_predict_x -= (ball.x_velocity * 1.5)
-        #print(tempx_0, tempy_0)
     
     elif ball.wall_predict_y < 600:
         if ball.wall_predict_y > 590:
@@ -91,13 +84,10 @@ def game_screen(mouse_pos, mouse_clicked, user_input):
         ball.wall_predict_y = ball.y
         ball.wall_predict_x = 1050
     
-    line_x_700 = pygame.draw.line(display.SCREEN, display.MAROON, (700, 0), (700, 600), 5)
-    line_x_1000 = pygame.draw.line(display.SCREEN, display.MAROON, (1000, 0), (1000, 600), 5)
+    #line_x_900 = pygame.draw.line(display.SCREEN, display.MAROON, (900, 0), (900, 600), 5)
 
-
-    line_predict = pygame.draw.line(display.SCREEN, display.BLUE, (ball.x, ball.y), (ball.wall_predict_x, ball.wall_predict_y), 10)
-    #line_predict2 = pygame.draw.line(display.SCREEN, display.PURPLE, (ball.wall_predict_x, ball.wall_predict_y), (enemy.x, enemy.y), 10)
-    circle_predict = pygame.draw.circle(display.SCREEN, display.GREEN, (ball.wall_predict_x, ball.wall_predict_y), 30, 10)
+    #line_predict = pygame.draw.line(display.SCREEN, display.BLUE, (ball.x, ball.y), (ball.wall_predict_x, ball.wall_predict_y), 10)
+    #circle_predict = pygame.draw.circle(display.SCREEN, display.GREEN, (ball.wall_predict_x, ball.wall_predict_y), 30, 10)
     
     #Selection to check if a player has won.
     if player.score == game_setting.score:

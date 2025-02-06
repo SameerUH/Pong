@@ -1,21 +1,16 @@
-"""
-To make the computer run on its own I'm going to first make a screen which allows the user to decide between the computer or 2 player game.
-
-3 buttons: (2-player, computer, GO BACK).
-    if 2-player button is pressed:
-        game_setting.computer = False
-        display.state = 'game_screen'
-    elif computer is pressed:
-        game_setting.computer = True
-        display.state = 'game_screen'
-
-Make the computer after.
-"""
-
+#Imports/file management.
 import pygame
 from objects import display, TWO_PLAYER, COMPUTER, GAMEMODE, GO_BACK
 
 def computer_decider_screen(mouse_pos, mouse_clicked):
+    """
+    Function to let the user decide between playing with their friends or playing against the computer.
+
+    Simply displays the buttons and allows the button.py file to act as a backend and control behaviour of the buttons.
+
+    There is also a 'GO BACK' button allowing the user to return to the start screen.
+    """
+    
     display.SCREEN.fill(display.BLACK)
     GAMEMODE.functions(mouse_pos, mouse_clicked)
     TWO_PLAYER.functions(mouse_pos, mouse_clicked)

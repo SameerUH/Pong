@@ -67,7 +67,7 @@ while True:
     #Selection to decide which functions should run when the user navigates through the game.
     if display.state == "intro_screen":
         #INTRO SCREEN
-        intro_screen()
+        intro_screen(mouse_pos, mouse_clicked)
     if display.state == "start_screen":
         #START SCREEN
         start_screen(mouse_pos, mouse_clicked)

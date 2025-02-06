@@ -1,0 +1,11 @@
+# **<ins>PONG project overal feelings:</ins>**
+
+This file is basically just my reflection for this entire project going over ups and downs.
+
+## ** What went well:**
+
+Throughout this entire project, I'm happy to say alot of parts/features went pretty well. From making classes/objects to designing screens and I think my favourite/most significant feature in this project that I haven't done in previous python projects is **file management**.
+
+I followed a set of rules I gave myself where I would have one file per class and every function related to the object would be in that class such as movement, collisions and user inputs. This made it incredibly easier with things such as as navigating code, editing multiple files at once and debugging errors as it would always point to the file that would have contain the error.
+
+Another feature that went well was object behaviour such as ball and player movement as well as inputs such as mouse clicks and keyboard presses. This is because 
