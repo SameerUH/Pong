@@ -13,3 +13,4 @@ https://youtu.be/VjedlRhl66M
 
 ## **Video showing how the enemy predicts where the ball is going to go:**
 https://youtu.be/VUB29PxCvoc
+[![PONG predictor thumbnail](https://github.com/user-attachments/assets/85bc78a7-e173-42be-be37-ba465ba7756f)](https://youtu.be/VUB29PxCvoc)
