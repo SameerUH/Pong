@@ -8,4 +8,24 @@ Throughout this entire project, I'm happy to say alot of parts/features went pre
 
 I followed a set of rules I gave myself where I would have one file per class and every function related to the object would be in that class such as movement, collisions and user inputs. This made it incredibly easier with things such as as navigating code, editing multiple files at once and debugging errors as it would always point to the file that would have contain the error.
 
-Another feature that went well was object behaviour such as ball and player movement as well as inputs such as mouse clicks and keyboard presses. This is because 
+Another feature that went well was object behaviour such as ball and player movement as well as inputs such as mouse clicks and keyboard presses. This is because I had an issue with multiple inputs when I only clicked/typed once meaning it would sometimes have logic errors such as unexpected outcomes. I fixed this by adding a delay of a couple of seconds as soon as it registered an input, causing it to only register one instead of multiple.
+
+What went wrong:
+
+Not alot went wrong and if it did I managed to find solutions to those problems. For example, I found issues when implementing a computer for single player mode where I couldn't have 2 different python files import from each other, when I would try to I would always end up with a deadlock which is a result of 2 processes not being fully executed due to them trying to access each other's resources. My solution was to only allow screen files and a few object files to have access to other objects.
+
+Another issue I had was with the colourblind setting, it was difficult to find a colour scheme that would be good for each different colourblind person so I just followed general rules such as no green and red, having brown and blue is quite good etc. I wanted a wide range of colours but I didn't want to make it so bizarre/odd looking and focus too much on it so I decided to stick with a couple of repetitive colours instead.
+
+The font colours sometimes caused an issue as the colour white doesn't contrast well with others such as light blue and having black as a background color made it difficult if I wanted to display black text.
+
+Future ideas/larger scale project:
+
+It is important to note that this project was intended to be a small project and not one with top notch features, I simply wanted to recreate the game with my own implementation and ideas of how the mechanics would work whilst also having fun and experimenting with other features.
+
+If this was a larger scale project I would probably try and implement the following:
+    - Run it on a server to see if multiple devices can play on the same game instance.
+    - Have a controller be able to connect to the game and use a joystick/buttons to control the characters.
+    - Implement music such as a radio which the user can decide which type of songs they would like to play.
+    - Make it so the user can customize their screens with their own colour scheme/position of buttons.
+    - Fix fullscreen and make it easier to see, so it isn't stretched.
+    - Have different options for the colourblind button such as Tritanopia, Deuteranopia, protanopia, etc.
